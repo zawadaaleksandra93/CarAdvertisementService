@@ -2,11 +2,10 @@ package service;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import model.Brand;
 
 
 import model.CarAdvertisement;
-import repository.CarAdvertisementRepositiory;
+import repository.CarAdvertisementRepository;
 import repository.InMemoryCarAdvertisementRepository;
 import request.CreateCarAdvertisementRequest;
 
@@ -16,26 +15,25 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarAdvertisementService {
-    
-    private CarAdvertisementRepositiory repositiory;
 
-    private List<CarAdvertisement> carAdvertisements;
+    private CarAdvertisementRepository repository;
+
 
     public CarAdvertisementService(InMemoryCarAdvertisementRepository instance) {
-
+        this.repository = instance;
     }
 
 
-    public Optional<CarAdvertisement> createCarAdvertisement(CreateCarAdvertisementRequest request){
-     long numberOfCarsFromListWithSameBrandAsUsersCar = repositiory.numberOfCarsFromListWithSameBrandAsUsersCar(request);
-        if (numberOfCarsFromListWithSameBrandAsUsersCar>=3){
+    public Optional<CarAdvertisement> createCarAdvertisement(CreateCarAdvertisementRequest request) {
+        long numberOfCarsFromListWithSameBrandAsUsersCar = repository.numberOfCarsFromListWithSameBrandAsUsersCar(request);
+        if (numberOfCarsFromListWithSameBrandAsUsersCar >= 3) {
             return Optional.empty();
         }
 
-        return Optional.of(repositiory.create(request));
+        return Optional.of(repository.create(request));
     }
 
     public List<CarAdvertisement> findAll() {
-        return repositiory.findAll();
+        return repository.findAll();
     }
 }

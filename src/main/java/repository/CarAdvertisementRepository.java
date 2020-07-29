@@ -5,11 +5,11 @@ import request.CreateCarAdvertisementRequest;
 
 import java.util.List;
 
-public interface CarAdvertisementRepositiory {
+public interface CarAdvertisementRepository {
 
     CarAdvertisement create(CreateCarAdvertisementRequest request);
 
-     List<CarAdvertisement> findAll();
+    List<CarAdvertisement> findAll();
 
-long numberOfCarsFromListWithSameBrandAsUsersCar(CreateCarAdvertisementRequest request);
+    long numberOfCarsFromListWithSameBrandAsUsersCar(CreateCarAdvertisementRequest request);
 }

@@ -21,5 +21,4 @@ public class CarAdvertisement {
     private int year;
     private double price;
 
-
 }

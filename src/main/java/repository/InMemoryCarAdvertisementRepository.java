@@ -6,13 +6,14 @@ import model.CarAdvertisement;
 import request.CreateCarAdvertisementRequest;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class InMemoryCarAdvertisementRepository implements CarAdvertisementRepositiory {
+public class InMemoryCarAdvertisementRepository implements CarAdvertisementRepository {
 
 
-    private List<CarAdvertisement> carAdvertisements;
+    private List<CarAdvertisement> carAdvertisements = new ArrayList<>();
     private static InMemoryCarAdvertisementRepository repository;
 
     public static InMemoryCarAdvertisementRepository getInstance() {
@@ -48,7 +49,7 @@ public class InMemoryCarAdvertisementRepository implements CarAdvertisementRepos
 
     @Override
     public long numberOfCarsFromListWithSameBrandAsUsersCar(CreateCarAdvertisementRequest request) {
-        Brand modelFromUser =request.getBrand();
+        Brand modelFromUser = request.getBrand();
         long numberOfCarsFromListWithSameBrandAsUsersCar = carAdvertisements.stream()
                 .filter(carAdvertisements -> carAdvertisements.getBrand().equals(modelFromUser))
                 .count();
